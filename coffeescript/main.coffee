@@ -1,7 +1,5 @@
 ---
 ---
-# a = "cool thingd"
-# console.log("something #{a}")
 
 $(document).ready ->
   $.ajax
@@ -12,12 +10,6 @@ $(document).ready ->
       window.bike = data.bike
       createCompGroups()
       writeSectionHeaders()
-
-
-    
-# listAllComponents = (x) -> 
-#   $('#components_display').text(x)
-
 
 
 createCompGroups = ->
@@ -35,13 +27,12 @@ createCompGroups = ->
 writeSectionHeaders = ->
   i = 0
   while i < Object.keys(component_groups).length
-    $('#components_display').append("<h3>#{Object.keys(component_groups)[i]}</h3>")
-      # writeComponents()
+    $('#components_display').append("<h3>#{Object.keys(component_groups)[i]}</h3><ul id='list_#{i}' class='attr-list'></ul>")
+
+    n = 0
+    while n < component_groups[Object.keys(component_groups)[i]].length
+      $("#list_#{i}").append("<li><div class='attr-title'>#{component_groups[Object.keys(component_groups)[i]][n].type}</div>
+        #{component_groups[Object.keys(component_groups)[i]][n].description}</li>")
+      n++
+
     i++
-
-
-# writeComponents = ->
-#       n = 0
-#       while n < component_groups[bike.components[i].component_group].length
-#         $('#components_display').append("<li>#{component_groups[bike.components[i].component_group][n].type}</li>")
-#         n++        

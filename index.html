@@ -7,8 +7,8 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
   <!-- <link rel="stylesheet" href="/css/main.css"> -->
-  <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">    -->
-  <link rel="stylesheet" href="//rexlane.github.io/components_display/css/main.css">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl | prepend: site.url }}">   
+  <!-- <link rel="stylesheet" href="//rexlane.github.io/components_display/css/main.css"> -->
 
 
 
@@ -18,8 +18,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <!-- // <script src="/coffeescript/main.js"></script> -->
-  <!-- // <script src="{{ "/coffeescript/main.js" | prepend: site.baseurl }}"></script> -->
-  <script src="//rexlane.github.io/components_display/coffeescript/main.js"></script>
+  <script src="{{ "/coffeescript/main.js" | prepend: site.baseurl | prepend: site.url }}"></script>
+  <!-- // <script src="//rexlane.github.io/components_display/coffeescript/main.js"></script> -->
 
 </head>
 

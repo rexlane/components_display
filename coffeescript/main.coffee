@@ -8,8 +8,9 @@ $(document).ready ->
     success: (data, textStatus, jqXHR) ->
       console.log(data.bike)
       window.bike = data.bike
+      writeBikeInfo()
       createCompGroups()
-      writeSectionHeaders()
+      writeComponents()
 
 
 createCompGroups = ->
@@ -24,7 +25,12 @@ createCompGroups = ->
     component_groups[bike.components[i].component_group].push({"type":bike.components[i].component_type, "description":bike.components[i].description})
     i++
 
-writeSectionHeaders = ->
+writeBikeInfo = ->
+  $('#bike_title').html("#{bike.title}")
+  $('#binx_link').html("<a href='#{bike.url}' target='_blank'>View this bike on the Bike Index.</a>")
+
+
+writeComponents = ->
   i = 0
   while i < Object.keys(component_groups).length
     $('#components_display').append("<h3>#{Object.keys(component_groups)[i]}</h3><ul id='list_#{i}' class='attr-list'></ul>")

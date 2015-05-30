@@ -34,5 +34,4 @@ writeSectionHeaders = ->
       $("#list_#{i}").append("<li><div class='attr-title'>#{component_groups[Object.keys(component_groups)[i]][n].type}</div>
         #{component_groups[Object.keys(component_groups)[i]][n].description}</li>")
       n++
-
     i++

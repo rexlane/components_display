@@ -39,7 +39,7 @@ writeComponents = ->
     </div>")
 
   # Create html_string.
-  html_string = "<h2>Components</h2>" 
+  html_string = "" 
 
   # Add each component group header to html_string; open <ul> for each component group.
   for component_groups_key in Object.keys(component_groups)

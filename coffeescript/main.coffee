@@ -12,32 +12,27 @@ $(document).ready ->
       createCompGroups()
       writeComponents()
 
-
 createCompGroups = ->
   window.component_groups = {}
-  i = 0  
-  while i < bike.components.length
-    component_groups[bike.components[i].component_group] = []
-    i++
+  for component in bike.components
+     component_groups[component.component_group] = []
+    
+  for component in bike.components
+    component_groups[component.component_group].push({"type":component.component_type, "description":component.description})
 
-  i = 0
-  while i < bike.components.length
-    component_groups[bike.components[i].component_group].push({"type":bike.components[i].component_type, "description":bike.components[i].description})
-    i++
 
 writeBikeInfo = ->
   $('#bike_title').html("#{bike.title}")
   $('#binx_link').html("<a href='#{bike.url}' target='_blank'>View this bike on the Bike Index.</a>")
 
-
 writeComponents = ->
-  i = 0
-  while i < Object.keys(component_groups).length
-    $('#components_display').append("<h3>#{Object.keys(component_groups)[i]}</h3><ul id='list_#{i}' class='attr-list'></ul>")
+  for component_groups_key in Object.keys(component_groups)
+    
+    html_string = "" 
+    html_string = html_string + "<h3>#{component_groups_key}</h3><ul>"
 
-    n = 0
-    while n < component_groups[Object.keys(component_groups)[i]].length
-      $("#list_#{i}").append("<li><div class='attr-title'>#{component_groups[Object.keys(component_groups)[i]][n].type}</div>
-        #{component_groups[Object.keys(component_groups)[i]][n].description}</li>")
-      n++
-    i++
+    for component in component_groups[component_groups_key]
+      html_string = html_string + "<li><div>#{component.type}</div>#{component.description}</li>"
+
+    html_string = html_string + "</ul>"
+    $('#components_display').append(html_string)

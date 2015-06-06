@@ -6,33 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Component Display</title>
+  <title>Components Display</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-  <!-- <link rel="stylesheet" href="/css/main.css"> -->
   <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">   
-  <!-- <link rel="stylesheet" href="//rexlane.github.io/components_display/css/main.css"> -->
-
-
-
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-  <!-- // <script src="/coffeescript/main.js"></script> -->
   <script src="{{ site.baseurl }}/coffeescript/main.js"></script>
-  <!-- // <script src="//rexlane.github.io/components_display/coffeescript/main.js"></script> -->
 
 </head>
 
 <body>
-  
+
   <h1 id="bike_title"></h1>
   <p id="binx_link"></p>
-  
-  <div id="components_display">
-  </div>  
+  <div id="components_display"></div>  
 
 </body>
 </html>

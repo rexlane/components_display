@@ -10,6 +10,7 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
   <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">   
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Abril+Fatface' rel='stylesheet' type='text/css'>
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
@@ -20,14 +21,21 @@
 
 <body>
 
-  <form id="bike_lookup">
-    Search for a bike to view its components:
-    <input type="text" name="bike_id" id="bike_id">
-    <input type="submit" name="form_submit" id="form_submit" value="Search">
-  </form>
+  <div id="header">
+    <form id="bike_lookup">
+      Search for a bike to view its components:
+      <input type="number" name="bike_id" id="bike_id">
+      <input type="submit" name="form_submit" id="form_submit" value="Search">
+    </form>
+  </div>
 
-  <div id="bike_info_header"></div>
-  <div id="components_display"></div>  
+
+
+  <div id="bike_content">
+     <h1 id="bike_title"></h1>
+    <div id="general_bike_info"></div>
+    <div id="components_display"></div>  
+  </div>
 
 </body>
 </html>

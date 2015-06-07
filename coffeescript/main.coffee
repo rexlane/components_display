@@ -20,7 +20,7 @@ createCompGroups = ->
   # Create component_groups hash.
   window.component_groups = {}
 
-  # Add each component group; set equal to an empty array.
+  # Add each component group, equal to an empty array.
   for component in bike.components
      component_groups[component.component_group] = []
     
@@ -43,14 +43,20 @@ writeComponents = ->
 
   # Add each component group header to html_string; open <ul> for each component group.
   for component_groups_key in Object.keys(component_groups)
-    html_string = html_string + "<h3>#{component_groups_key}</h3><ul>"
+    html_string = html_string + "<table class='comp_group_table'>"
+
+    # comp_group_img_src = "#{component_groups_key}"
+    # comp_group_img_src = comp_group_img_src.replace(/\s+/g, "_").toLowerCase()
+    # html_string = html_string + "<tr><th class='comp_group_head'><img src='{{ site.baseurl }}/images/#{comp_group_img_src}.png' class='comp_group_img'>#{component_groups_key}</th></tr>"
+
+    html_string = html_string + "<tr><th class='comp_group_head'>#{component_groups_key}</th></tr>"
 
     # Add a <li> comtaining each component's type and description.
     for component in component_groups[component_groups_key]
-      html_string = html_string + "<li><div>#{component.type}</div>#{component.description}</li>"
+      html_string = html_string + "<tr><td>#{component.type}<br />#{component.description}</td></tr>"
 
     # Close each <ul>.
-    html_string = html_string + "</ul>"
+    html_string = html_string + "</table>"
   
   # Write html_string to html.
   $('#components_display').html(html_string)

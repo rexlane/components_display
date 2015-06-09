@@ -29,6 +29,19 @@ clearContent = ->
 
 
 createCompGroups = ->
+  # Alphabetically sort bike.components by component_group.
+  bike.components.sort (a,b) ->
+    if a.component_group < b.component_group
+      return -1
+    if a.component_group > b.component_group
+      return 1
+    0
+
+   # bike.components.sort (a) ->
+   #  if a.component_group = "Additional parts"
+   #    return 1
+   #  0
+
   # Create component_groups hash.
   window.component_groups = {}
 
@@ -40,12 +53,14 @@ createCompGroups = ->
   for component in bike.components
     component_groups[component.component_group].push({"type":component.component_type, "description":component.description})
 
-  # for componentGroup in component_groups 
-  #   component_groups[componentGroup].sort (a, b) ->
-  #     a = a.type.toLowerCase()
-  #     b = b.type.toLowerCase()
-  #     if a < b then -1 else if a > b then 1 else 0
-
+  # Alphabetically sort components by type
+  for compGroup in Object.keys(component_groups)
+    component_groups[compGroup].sort (a, b) ->
+      if a.type < b.type
+        return -1
+      if a.type > b.type 
+        return 1
+      0
 
 writeComponents = ->
   # Display the bike's title and image and link to it on the Bike Index.

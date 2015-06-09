@@ -36,18 +36,29 @@ createCompGroups = ->
     if a.component_group > b.component_group
       return 1
     0
+    
 
-   # bike.components.sort (a) ->
-   #  if a.component_group = "Additional parts"
-   #    return 1
-   #  0
+  # window.additionalPartsArray = []
+  # for component in bike.components when component.component_group is "Additional parts"
+  #   additionalPartsArray.push(bike.components.indexOf(component))
+  # # console.log(additionalPartsArray)
+
+  # window.splicedPartsArray = []
+  # for part in additionalPartsArray
+  #   splicedPartsArray.push(bike.components.splice(part, 1))
+  # # console.log(splicedPartsArray)
+
+  # for part in splicedPartsArray
+  #   bike.components.push(part)
+
+   
 
   # Create component_groups hash.
   window.component_groups = {}
 
   # Add each component group, equal to an empty array.
   for component in bike.components
-     component_groups[component.component_group] = []
+    component_groups[component.component_group] = []
     
   # Push each component as a hash (containing type & description) to its component group array.
   for component in bike.components
@@ -61,6 +72,8 @@ createCompGroups = ->
       if a.type > b.type 
         return 1
       0
+
+
 
 writeComponents = ->
   # Display the bike's title and image and link to it on the Bike Index.

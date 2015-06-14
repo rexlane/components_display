@@ -2,7 +2,7 @@
 ---
 
 $(document).ready ->
-  $("#form_submit").click (event) ->
+  $("#bike_lookup").submit (event) ->
     event.preventDefault()
     clearContent()
     bike_id = $("#bike_id").val()
@@ -21,6 +21,9 @@ $(document).ready ->
       # Clear search field, remove focus
       $("#bike_id").val("").blur()
 
+  # $("#bike_id").val(32)
+  # $("#form_submit").submit() 
+
 # Clear old page content on form submit.
 clearContent = ->
   $("#bike_title").html("")
@@ -31,17 +34,43 @@ clearContent = ->
 createCompGroups = ->
   # Alphabetically sort bike.components by component_group.
   bike.components.sort (a,b) ->
-    if a.component_group < b.component_group
+    # if a.component_group < b.component_group
+    #   return -1
+    # if a.component_group > b.component_group
+    #   return 1
+    # 0
+
+    if a.component_type < b.component_type
       return -1
-    if a.component_group > b.component_group
+    if a.component_type > b.component_type
       return 1
     0
-    
+
+  # bike.components = bike.components.reverse()
 
   # window.additionalPartsArray = []
   # for component in bike.components when component.component_group is "Additional parts"
-  #   additionalPartsArray.push(bike.components.indexOf(component))
+  #   additionalPartsArray.push(component)
   # # console.log(additionalPartsArray)
+
+  # # for component in bike.components when component.component_group is "Additional parts"
+  #   # console.log(bike.components.splice(component, 1))
+  #   console.log("hi, seth")
+  #   console.log(bike.components.indexOf(component))
+  #   bike.components.splice(bike.components.indexOf(component), 1)
+
+  # bike.components.concat(additionalPartsArray)
+
+
+
+  # window.splicedPartsArray = []
+  # i = 0
+  # while i < additionalPartsArray.length 
+  #   splicedPartsArray.push(bike.components.splice(component, 1))
+  #   i++
+  # console.log(splicedPartsArray)
+
+
 
   # window.splicedPartsArray = []
   # for part in additionalPartsArray
@@ -64,14 +93,14 @@ createCompGroups = ->
   for component in bike.components
     component_groups[component.component_group].push({"type":component.component_type, "description":component.description})
 
-  # Alphabetically sort components by type
-  for compGroup in Object.keys(component_groups)
-    component_groups[compGroup].sort (a, b) ->
-      if a.type < b.type
-        return -1
-      if a.type > b.type 
-        return 1
-      0
+  # # Alphabetically sort components by type
+  # for compGroup in Object.keys(component_groups)
+  #   component_groups[compGroup].sort (a, b) ->
+  #     if a.type < b.type
+  #       return -1
+  #     if a.type > b.type 
+  #       return 1
+  #     0
 
 
 
@@ -92,8 +121,16 @@ writeComponents = ->
     # Create html_string.
     html_string = "" 
 
-    # Add each component group header to html_string; create table for each component group.
-    for component_groups_key in Object.keys(component_groups)
+    keys = Object.keys(component_groups)
+    additional_index = keys.indexOf("Additional parts")
+    if additional_index isnt -1
+      keys.splice(additional_index, 1)
+      keys.sort()
+      keys.push("Additional parts")
+    else
+      keys.sort()
+     
+    for component_groups_key in keys
 
       comp_group_img_src = "#{component_groups_key}"
       comp_group_img_src = comp_group_img_src.replace(/\s+/g, "_").toLowerCase()
